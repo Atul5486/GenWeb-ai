@@ -26,7 +26,7 @@ app.post('/api/stripe/webhook',express.raw({type:'application/json'}),stripeWebH
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"https://genweb-ai-1-e5n0.onrender.com",
+    origin:"https://genweb-ai-5g7d.onrender.com",
     credentials:true
 }))
 

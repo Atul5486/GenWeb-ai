@@ -9,6 +9,11 @@ import websiteRouter from './routes/website.routes.js'
 import billingRouter from './routes/billing.router.js'
 import { stripeWebHook } from './controllers/webhook.controller.js';
 
+import dns from 'dns'
+
+
+dns.setServers(["1.1.1.1","8.8.8.8"])
+
 const app=express();
 
 //  Config

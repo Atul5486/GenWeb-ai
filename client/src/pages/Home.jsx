@@ -25,7 +25,8 @@ const Home = () => {
 
   const handleLogout = async () => {
     try {
-      axiosInstance.get("/api/auth/logout", { withCredentials: true });
+      await axiosInstance.get("/api/auth/logout", { withCredentials: true });
+      localStorage.removeItem("token");
       dispatch(setUserData(null));
     } catch (err) {
       console.log(err);

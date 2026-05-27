@@ -10,13 +10,7 @@ export const googleAuth=async(req,res)=>{
     
     if(userExist){
          const token=jwt.sign({id:userExist._id},process.env.JWT_SECRET,{expiresIn:'7d'})
-    res.cookie("token",token,{
-        httpOnly:true,
-        secure:true,
-        sameSite:"none",
-        maxAge:7*24*60*60*1000
-    });
-        return res.status(200).json(userExist);
+        return res.status(200).json({ user: userExist, token });
         // return res.status(400).json({message:'User already exist'});
     }
     const user=await userModel.create({
@@ -25,13 +19,7 @@ export const googleAuth=async(req,res)=>{
         avatar
     })
     const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'7d'})
-    res.cookie("token",token,{
-        httpOnly:true,
-        secure:true,
-        sameSite:"none",
-        maxAge:7*24*60*60*1000
-    });
-    res.status(201).json(user);
+    res.status(201).json({ user, token });
    }catch(err){
     console.log(err)
     res.status(500).json({error:'Internal server error'});
@@ -40,11 +28,6 @@ export const googleAuth=async(req,res)=>{
 
 export const logout=(req,res)=>{
     try{
-        res.clearCookie("token",{
-            httpOnly:true,
-            secure:true,
-            sameSite:"none"
-        })  
         return res.status(200).json({message:'Logout successfully'});
     }catch(err){
     console.log(err)

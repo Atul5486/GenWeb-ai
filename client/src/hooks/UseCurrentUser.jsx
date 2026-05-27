@@ -14,6 +14,8 @@ const UseCurrentUser = () => {
         });
         dispatch(setUserData(response.data));
       } catch (err) {
+        localStorage.removeItem("token");
+        dispatch(setUserData(null));
         console.log(err);
       }
     };

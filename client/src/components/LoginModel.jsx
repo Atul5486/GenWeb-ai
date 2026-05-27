@@ -16,7 +16,8 @@ const LoginModel = ({ open, onClose }) => {
         avatar:result?.user?.photoURL,
         email:result?.user?.email
       },{withCredentials:true});
-       dispatch(setUserData(response.data));
+       localStorage.setItem("token", response.data.token);
+       dispatch(setUserData(response.data.user));
       onClose();
     }catch(err){
         console.log(err)

@@ -2,9 +2,12 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
 export const authUser = async (req, res, next) => {
   try {
-    console.log(req)
-    const { token } = req.cookies;
-    console.log(token)
+    const authHeader = req.headers.authorization;
+    const bearerToken = authHeader?.startsWith("Bearer ")
+      ? authHeader.slice(7)
+      : null;
+    const cookieToken = req.cookies?.token;
+    const token = bearerToken || cookieToken;
     if (!token) {
       return res.status(401).json({ message: "Please login first" });
     }

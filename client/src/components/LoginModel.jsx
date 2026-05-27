@@ -18,6 +18,7 @@ const LoginModel = ({ open, onClose }) => {
       },{withCredentials:true});
        localStorage.setItem("token", response.data.token);
        dispatch(setUserData(response.data.user));
+       console.log(response)
       onClose();
     }catch(err){
         console.log(err)

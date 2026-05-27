@@ -14,7 +14,9 @@ const UseCurrentUser = () => {
         });
         dispatch(setUserData(response.data));
       } catch (err) {
-        localStorage.removeItem("token");
+        if (err?.response?.status === 401 || err?.response?.status === 403) {
+          localStorage.removeItem("token");
+        }
         dispatch(setUserData(null));
         console.log(err);
       }

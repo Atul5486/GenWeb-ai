@@ -25,8 +25,13 @@ app.post('/api/stripe/webhook',express.raw({type:'application/json'}),stripeWebH
 // Middlewares
 app.use(express.json())
 app.use(cookieParser())
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    "http://localhost:5173",
+    "http://localhost:3000",
+].filter(Boolean)
 app.use(cors({
-    origin:"https://genweb-ai-1-e5n0.onrender.com",
+    origin: allowedOrigins,
     credentials:true
 }))
 

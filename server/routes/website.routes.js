@@ -8,6 +8,6 @@ router.put('/update/:id',authUser,changes)
 router.get('/get-by-id/:id',authUser,getWebsiteById)
 router.get('/get-all',authUser,getAllWebsites)
 router.get('/deploy/:id',authUser,deploy)
-router.get('/get-by-slug/:slug',authUser,getWebsiteBySlug)
+router.get('/get-by-slug/:slug',getWebsiteBySlug)
 
 export default router;

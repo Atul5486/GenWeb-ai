@@ -20,10 +20,11 @@ export const stripeWebHook=async(req,res)=>{
         const plan=session.metadata.plan
         const credits=Number(session.metadata.credits)
 
-        await userModel.findByIdAndUpdate(userId,{
+       const res= await userModel.findByIdAndUpdate(userId,{
             $inc:{credits},
             plan
         })
+        console.log(res)
     }
     return res.json({received:true})
 }

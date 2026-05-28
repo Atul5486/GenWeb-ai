@@ -202,7 +202,6 @@ export const getWebsiteBySlug=async(req,res)=>{
  try{
        const website = await websiteModel.findOne({
       slug: req.params.slug,
-      user: req.user._id,
     });
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
